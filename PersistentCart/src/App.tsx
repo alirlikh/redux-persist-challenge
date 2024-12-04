@@ -1,10 +1,25 @@
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Landing from "./Pages/Landing"
+import Cart from "./Pages/Cart"
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Landing />
+    },
+    {
+      path: "/cart",
+      element: <Cart />
+    },
+    {
+      path: "*",
+      element: <>NOT FOUND!</>
+    }
+  ])
   return (
     <>
-      <div>app</div>
+      <RouterProvider router={router}></RouterProvider>
     </>
   )
 }
