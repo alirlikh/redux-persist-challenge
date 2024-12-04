@@ -1,4 +1,5 @@
 import { Button } from "../index"
+import "./Product.css"
 
 type ProductProps = {
   title: string
@@ -10,8 +11,7 @@ const Product = ({ title, price }: ProductProps) => {
     console.log(`foo =`, "add")
   }
 
-  const src =
-    "https://blog.logrocket.com/wp-content/uploads/2024/09/persist-state-redux-persist-redux-toolkit-react.png"
+  const src = "https://cdn.soft98.ir/Glary-Utilities.jpg"
   return (
     <div className="product">
       <img src={src} alt="product image" className="product-image" />
