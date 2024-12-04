@@ -1,0 +1,17 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+.product-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
