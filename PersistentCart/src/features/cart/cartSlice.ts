@@ -1,10 +1,8 @@
 import { combineReducers, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Product } from "../../utils"
+import { type CartItem, type Product } from "../../utils"
 import storage from "redux-persist/lib/storage"
 import persistReducer from "redux-persist/es/persistReducer"
 import { PersistConfig } from "redux-persist"
-
-type CartItem = Product & { quantity: number }
 
 type CartState = {
   cartItem: CartItem[]
@@ -25,7 +23,7 @@ const cartSlice = createSlice({
     addItem: (state, action: PayloadAction<CartItem>) => {
       const product = state.cartItem.find((item) => item.id === action.payload.id)
       if (product) {
-        product.quantity = action.payload.quantity
+        product.quantity += action.payload.quantity
       } else {
         state.cartItem.push(action.payload)
       }
@@ -34,6 +32,8 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<CartItem>) => {
       state.cartItem = state.cartItem.filter((item) => item.id !== action.payload.id)
+      state.numItemInCart -= action.payload.quantity
+      state.total -= action.payload.price * action.payload.quantity
     },
     editItem: () => {}
   }
