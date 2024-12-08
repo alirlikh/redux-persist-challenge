@@ -2,6 +2,7 @@ export type Product = {
   id: number
   title: string
   price: number
+  description?: string
 }
 
 export type ProductResponse = {
@@ -10,3 +11,4 @@ export type ProductResponse = {
   limit: number
   products: Product[]
 }
+export type CartItem = Product & { quantity: number }
