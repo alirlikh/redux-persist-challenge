@@ -41,8 +41,16 @@ const ProductList = () => {
         <div className="product-container">
           {products &&
             products.map((product) => {
-              const { id, title, price } = product
-              return <ProductComp key={id} title={title} price={price} />
+              const { id, title, price, description } = product
+              return (
+                <ProductComp
+                  key={id}
+                  title={title}
+                  price={price}
+                  id={id}
+                  description={description}
+                />
+              )
             })}
         </div>
       </section>
