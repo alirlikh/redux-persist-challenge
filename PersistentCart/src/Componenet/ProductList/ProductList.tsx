@@ -1,30 +1,49 @@
-import { Product } from "../index"
-import { ProductType } from "../../utils"
+import { Product as ProductComp } from "../index"
+import { Product } from "../../utils"
 import "./ProductList.css"
+import { useEffect, useState } from "react"
+import { fetchProducts } from "../../services/index"
 
 const ProductList = () => {
-  const tempProduct = {
-    id: 1,
-    title: "Book",
-    price: 26
-  }
-  //@ts-ignore
-  const products: ProductType[] = Array.from({ length: 22 }, (_, index) => {
-    return {
-      id: index + 1,
-      title: tempProduct.title,
-      price: tempProduct.price
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const data = await fetchProducts()
+        const { products: apiProducts } = data
+        setProducts(apiProducts)
+      } catch (error) {
+        console.log(error)
+      }
     }
-  })
+
+    fetch()
+  }, [])
+
+  const [products, setProducts] = useState<[] | Product[]>()
+
+  // const tempProduct = {
+  //   id: 1,
+  //   title: "Book",
+  //   price: 26
+  // }
+  //@ts-ignore
+  // const products: Product[] = Array.from({ length: 2 }, (_, index) => {
+  //   return {
+  //     id: index + 1,
+  //     title: tempProduct.title,
+  //     price: tempProduct.price
+  //   }
+  // })
 
   return (
     <>
       <section>
         <div className="product-container">
-          {products.map((product) => {
-            const { id, title, price } = product
-            return <Product key={id} title={title} price={price} />
-          })}
+          {products &&
+            products.map((product) => {
+              const { id, title, price } = product
+              return <ProductComp key={id} title={title} price={price} />
+            })}
         </div>
       </section>
     </>
