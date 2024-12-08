@@ -9,6 +9,7 @@
   border: 1px solid #ccc !important;
   padding: 10px;
   margin: 10px;
+  gap: 20px;
 }
 
 .product:hover {
@@ -37,4 +38,18 @@
 
 .product-title > h2 {
   margin: 0.25rem 0;
+}
+
+.product-title > p {
+  font-weight: 300;
+  font-size: 0.75rem;
+  height: 60px;
+  overflow: hidden;
+  text-wrap: wrap;
+}
+
+.price {
+  margin: 10px;
+  font-weight: 500;
+  font-size: 1rem;
 }
