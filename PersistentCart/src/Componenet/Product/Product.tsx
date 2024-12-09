@@ -10,16 +10,18 @@ type ProductProps = {
   id: number
   title: string
   price: number
+  images: string[]
   description?: string
 }
 
-const Product = ({ title, price, id, description }: ProductProps) => {
+const Product = ({ title, price, id, description, images }: ProductProps) => {
   const dispatch = useDispatch<AppDispatch>()
 
   const cartProduct: CartItem = {
     id,
     title,
     price,
+    images,
     quantity: 1
   }
 
@@ -31,10 +33,15 @@ const Product = ({ title, price, id, description }: ProductProps) => {
   const src = "https://cdn.soft98.ir/Glary-Utilities.jpg"
   return (
     <div className="product">
-      <img src={src} alt="product image" className="product-image" />
+      <img
+        src={images ? images[0] : src}
+        alt="product image"
+        className="product-image"
+        loading="lazy"
+      />
       <div className="product-title">
         <h2>{title}</h2>
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
         <span className="price">{price}</span>
       </div>
       <Button onClick={handleCart} type="button">

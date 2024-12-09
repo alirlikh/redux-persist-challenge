@@ -41,13 +41,14 @@ const ProductList = () => {
         <div className="product-container">
           {products &&
             products.map((product) => {
-              const { id, title, price, description } = product
+              const { id, title, price, description, images } = product
               return (
                 <ProductComp
                   key={id}
                   title={title}
                   price={price}
                   id={id}
+                  images={images}
                   description={description}
                 />
               )

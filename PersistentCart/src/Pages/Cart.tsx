@@ -3,6 +3,8 @@ import { AppDispatch, RootState } from "../store"
 import { removeItem } from "../features/cart/cartSlice"
 import { CartItem } from "../utils"
 
+const src = "https://cdn.soft98.ir/Glary-Utilities.jpg"
+
 function Cart() {
   const dispatch = useDispatch<AppDispatch>()
 
@@ -40,8 +42,9 @@ function Cart() {
                 >
                   <img
                     style={{ width: "100px", objectFit: "cover", height: "auto" }}
-                    src="https://cdn.soft98.ir/Glary-Utilities.jpg"
+                    src={item.images ? item.images[0] : src}
                     alt="product image"
+                    loading="lazy"
                   />
                   <div style={{ marginLeft: "10px", flex: 1 }}>
                     <span style={{ fontWeight: "500" }}>{item.title}</span>
