@@ -1,25 +1,27 @@
-import { Product as ProductComp } from "../index"
-import { Product } from "../../utils"
-import "./ProductList.css"
-import { useEffect, useState } from "react"
-import { fetchProducts } from "../../services/index"
+import { Product as ProductComp } from "../index";
+import "./ProductList.css";
+import { useProductQueries } from "../../services/index";
 
 const ProductList = () => {
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const data = await fetchProducts()
-        const { products: apiProducts } = data
-        setProducts(apiProducts)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     try {
+  //       const data = await fetchProducts()
+  //       const { products: apiProducts } = data
+  //       setProducts(apiProducts)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
 
-    fetch()
-  }, [])
+  //   fetch()
+  // }, [])
 
-  const [products, setProducts] = useState<[] | Product[]>()
+  // const [products, setProducts] = useState<[] | Product[]>();
+
+  const { data, isError, isLoading, error } = useProductQueries();
+
+  const products = data?.products || [];
 
   // const tempProduct = {
   //   id: 1,
@@ -35,13 +37,16 @@ const ProductList = () => {
   //   }
   // })
 
+  if (isLoading) return <div>loading...</div>;
+  if (isError) return <div>{error.toString()}</div>;
+
   return (
     <>
       <section>
         <div className="product-container">
           {products &&
-            products.map((product) => {
-              const { id, title, price, description, images } = product
+            products?.map((product) => {
+              const { id, title, price, description, images } = product;
               return (
                 <ProductComp
                   key={id}
@@ -51,11 +56,11 @@ const ProductList = () => {
                   images={images}
                   description={description}
                 />
-              )
+              );
             })}
         </div>
       </section>
     </>
-  )
-}
-export default ProductList
+  );
+};
+export default ProductList;
