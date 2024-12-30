@@ -5,6 +5,12 @@
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 body {
   font-size: medium;
   font-weight: 300;
