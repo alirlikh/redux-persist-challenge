@@ -1,2 +1,2 @@
-export * from "./Products/product.api";
+export * from "./Products/products.api";
 export * from "./react-query/react-query";
