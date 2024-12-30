@@ -29,6 +29,7 @@ export const fetchProducts = async (): Promise<{
 export const useProductQueries = () => {
   return useQuery({
     queryKey: ["products"],
+    staleTime: 300000,
     queryFn: fetchProducts,
     placeholderData: keepPreviousData,
   });
