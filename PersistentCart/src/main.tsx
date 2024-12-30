@@ -11,13 +11,13 @@ import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
         <PersistGate loading={<>loading...</>} persistor={persistor}>
           <App />
         </PersistGate>
-      </Provider>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </Provider>
   </StrictMode>
 );
