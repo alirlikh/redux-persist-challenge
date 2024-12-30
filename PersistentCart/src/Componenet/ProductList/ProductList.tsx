@@ -3,6 +3,7 @@ import "./ProductList.css";
 import { useProductQueries } from "../../services/index";
 
 const ProductList = () => {
+  // use axios to get data
   // useEffect(() => {
   //   const fetch = async () => {
   //     try {
@@ -19,9 +20,7 @@ const ProductList = () => {
 
   // const [products, setProducts] = useState<[] | Product[]>();
 
-  const { data, isError, isLoading, error } = useProductQueries();
-
-  const products = data?.products || [];
+  // temp data
 
   // const tempProduct = {
   //   id: 1,
@@ -36,6 +35,10 @@ const ProductList = () => {
   //     price: tempProduct.price
   //   }
   // })
+
+  const { data, isError, isLoading, error } = useProductQueries();
+
+  const products = data?.products || [];
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>{error.toString()}</div>;
