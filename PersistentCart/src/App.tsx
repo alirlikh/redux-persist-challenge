@@ -1,27 +1,32 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Landing from "./Pages/Landing"
-import Cart from "./Pages/Cart"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Landing from "./Pages/Landing";
+import Cart from "./Pages/Cart";
+import SingleProductPage from "./Pages/SingleProductPage";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Landing />
+      element: <Landing />,
     },
     {
       path: "/cart",
-      element: <Cart />
+      element: <Cart />,
+    },
+    {
+      path: "/:id",
+      element: <SingleProductPage />,
     },
     {
       path: "*",
-      element: <>NOT FOUND!</>
-    }
-  ])
+      element: <>NOT FOUND!</>,
+    },
+  ]);
   return (
     <>
       <RouterProvider router={router}></RouterProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
